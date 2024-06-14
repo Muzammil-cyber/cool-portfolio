@@ -1,12 +1,9 @@
-import Image from "next/image";
-import { IconProps, IconType, NextImageProps } from "./types";
+import { IconProps, IconType } from "./types";
 import {
   CircleUser,
   BriefcaseBusiness,
-  Download,
   Home,
   Newspaper,
-  SidebarOpen,
   Phone,
   Linkedin,
   Github,
@@ -304,3 +301,6 @@ export const SOCIAL_LINKS: { link: string; title: string; icon: IconType }[] = [
     icon: Icons.devTo as IconType,
   },
 ];
+
+export const SMALL_BREAKPOINT: number = 640; // 640px
+export const MEDIUM_BREAKPOINT: number = 768; // 768px

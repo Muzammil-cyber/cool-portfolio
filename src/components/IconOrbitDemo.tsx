@@ -1,20 +1,24 @@
+"use client";
 import OrbitingCircles from "@/components/magicui/orbiting-circles";
-import { Icons } from "@/lib/constant";
+import { Icons, SMALL_BREAKPOINT } from "@/lib/constant";
+import { useWindowSize } from "@/lib/useHooks";
 
 export function OrbitingCirclesDemo() {
+  const { width } = useWindowSize();
+  const isMobile: boolean = width < SMALL_BREAKPOINT;
   return (
-    <div className="relative flex h-[500px] w-full max-w-[32rem] items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
       {/* Inner Circles */}
       <OrbitingCircles
         className="h-[30px] w-[30px] border-none bg-transparent"
-        radius={80}
+        radius={isMobile ? 40 : 80}
       >
         <Icons.engineering className="fill-primary" />
       </OrbitingCircles>
       <OrbitingCircles
         className="h-[30px] w-[30px] border-none bg-transparent"
         delay={9}
-        radius={80}
+        radius={isMobile ? 40 : 80}
       >
         <Icons.globe className="fill-primary" />
       </OrbitingCircles>
@@ -22,14 +26,14 @@ export function OrbitingCirclesDemo() {
       {/* Outer Circles (reverse) */}
       <OrbitingCircles
         className="h-[50px] w-[50px] border-none bg-transparent"
-        radius={150}
+        radius={isMobile ? 75 : 150}
         reverse
       >
         <Icons.captivePortal className="fill-primary" />
       </OrbitingCircles>
       <OrbitingCircles
         className="h-[50px] w-[50px] border-none bg-transparent"
-        radius={150}
+        radius={isMobile ? 75 : 150}
         delay={3}
         reverse
       >
@@ -37,7 +41,7 @@ export function OrbitingCirclesDemo() {
       </OrbitingCircles>
       <OrbitingCircles
         className="h-[50px] w-[50px] border-none bg-transparent"
-        radius={150}
+        radius={isMobile ? 75 : 150}
         delay={6}
         reverse
       >
@@ -45,7 +49,7 @@ export function OrbitingCirclesDemo() {
       </OrbitingCircles>
       <OrbitingCircles
         className="h-[50px] w-[50px] border-none bg-transparent"
-        radius={150}
+        radius={isMobile ? 75 : 150}
         delay={9}
         reverse
       >
@@ -53,7 +57,7 @@ export function OrbitingCirclesDemo() {
       </OrbitingCircles>
       <OrbitingCircles
         className="h-[50px] w-[50px] border-none bg-transparent"
-        radius={150}
+        radius={isMobile ? 75 : 150}
         delay={12}
         reverse
       >
@@ -61,7 +65,7 @@ export function OrbitingCirclesDemo() {
       </OrbitingCircles>
       <OrbitingCircles
         className="h-[50px] w-[50px] border-none bg-transparent"
-        radius={150}
+        radius={isMobile ? 75 : 150}
         delay={15}
         reverse
       >
