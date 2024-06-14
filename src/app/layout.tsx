@@ -28,7 +28,7 @@ export default function RootLayout({
           fontSans.variable,
           fontMono.variable,
           fontSans.className,
-          "p-2 bg-secondary w-screen h-screen overflow-y-auto flex flex-col"
+          "flex h-screen w-screen flex-col overflow-hidden bg-secondary p-2 sm:flex-row",
         )}
       >
         <Layout>{children}</Layout>

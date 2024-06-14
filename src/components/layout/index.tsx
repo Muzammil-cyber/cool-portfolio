@@ -1,13 +1,18 @@
 "use client";
 import { PropsWithChildren } from "react";
-import Navbar from "./navbar";
+import NavbarMobile from "./navbar-mobile";
 import { ThemeProvider } from "next-themes";
+import { useWindowSize } from "@/lib/useHooks";
+import { SMALL_BREAKPOINT } from "@/lib/constant";
+import Navbar from "./navbar";
 
 function Layout({ children }: PropsWithChildren) {
+  const { width } = useWindowSize();
+  const isMobile = width < SMALL_BREAKPOINT;
   return (
     <ThemeProvider>
-      <Navbar />
-      <main className="bg-primary-foreground rounded-tl-md rounded-b-md flex-grow">
+      {isMobile ? <NavbarMobile /> : <Navbar />}
+      <main className="flex-grow rounded-b-md rounded-tl-md bg-background">
         {children}
       </main>
     </ThemeProvider>

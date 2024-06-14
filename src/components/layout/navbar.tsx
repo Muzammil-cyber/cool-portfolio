@@ -1,106 +1,122 @@
 "use client";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { Button, buttonVariants } from "../ui/button";
-import { Download, SidebarOpen } from "lucide-react";
-import Image from "next/image";
-import { Avatar, AvatarImage } from "../ui/avatar";
-import { Heading4, Para } from "../ui/Typography";
-import { AvatarFallback } from "@radix-ui/react-avatar";
 import { NAV_LINKS, SOCIAL_LINKS } from "@/lib/constant";
-import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { Para } from "../ui/Typography";
+import { Button, buttonVariants } from "../ui/button";
 import { cn } from "@/lib/utils";
+import {
+  BookOpenText,
+  Download,
+  SidebarClose,
+  SidebarOpen,
+} from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
-function Navbar() {
+import Link from "next/link";
+import { useState } from "react";
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <Sheet>
-      <SheetTrigger asChild className="p-0 h-fit">
-        <div className="w-full flex justify-between bg-primary-foreground rounded-tr-md items-center">
-          <Button
-            variant={"ghost"}
-            size={"lg"}
-            className="text-muted-foreground justify-end align-baseline w-fit h-fit py-4 bg-secondary rounded-none rounded-br-md"
-          >
-            <SidebarOpen className="w-6 h-6" />
-          </Button>
-          <Image
-            src={"/icon.svg"}
-            width={30}
-            height={30}
-            alt="Logo"
-            className="mr-4 "
-          />
-        </div>
-      </SheetTrigger>
-      <SheetContent
-        side={"left"}
-        className="w-full sm:w-[540px] flex flex-col p-4 py-10 justify-between"
+    <AnimatePresence>
+      <motion.nav
+        layout
+        //   initial={{ width: 80 }}
+        animate={{ width: isOpen ? 240 : 80 }}
+        //   exit={{ width: 80 }}
+        className={cn("flex h-full w-20 flex-col gap-4", {
+          "w-60": isOpen,
+        })}
       >
-        <SheetHeader className="flex flex-row gap-4 items-stretch text-left">
-          <Avatar className="h-12 w-12">
-            <AvatarImage src="/images/profile-pic.svg" alt="@shadcn" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-          <SheetTitle>
-            <Para className="text-left">
-              <span className="font-semibold">Muzammil Loya</span>
-              <br />
-              Software enginner
-            </Para>
-          </SheetTitle>
-        </SheetHeader>
-        <SheetDescription className="flex flex-col h-full justify-evenly">
-          <div className="text-muted-foreground flex-col justify-start items-start gap-2 inline-flex">
-            {NAV_LINKS.map((nav) => (
-              <Link
-                href={nav.link}
-                key={nav.title}
-                className={cn(
-                  buttonVariants({ variant: "ghost", size: "xl" }),
-                  "flex gap-2.5 items-center w-full justify-start pl-4"
-                )}
-              >
-                <nav.icon className="w-5 h-5" />
-                <Para>{nav.title}</Para>
-              </Link>
-            ))}
-          </div>
-          <div className="text-muted-foreground flex-col justify-start items-start gap-2 inline-flex">
-            <Para bold className="text-primary text-2xl">
-              Socials
-            </Para>
-            {SOCIAL_LINKS.map((social) => (
-              <a
-                key={social.title}
-                className={cn(
-                  buttonVariants({ variant: "ghost", size: "lg" }),
-                  "flex gap-2.5 items-center w-full justify-start"
-                )}
-                href={social.link}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <social.icon className="w-5 h-5" />
-                <Para>{social.title}</Para>
-              </a>
-            ))}
-          </div>
-        </SheetDescription>
-        <SheetFooter id="foot">
-          <Button size={"xl"}>
-            <Download className="mr-2 h-4 w-4" />
-            Download Resume
+        <motion.button
+          className={cn(
+            "inline-flex h-fit w-full justify-center p-4 align-baseline text-muted-foreground",
+            { "justify-end": isOpen },
+          )}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? (
+            <SidebarClose className="h-6 w-6" />
+          ) : (
+            <SidebarOpen className="h-6 w-6" />
+          )}
+        </motion.button>
+
+        <motion.div
+          layout
+          className="flex h-fit w-full flex-col justify-between gap-4 px-4"
+        >
+          <header className="flex flex-row items-stretch gap-4 text-left">
+            <Avatar className="h-12 w-12">
+              <AvatarImage src="/images/profile-pic.svg" alt="@shadcn" />
+              <AvatarFallback>ML</AvatarFallback>
+            </Avatar>
+            {isOpen && (
+              <Para className={cn("text-left")}>
+                <span className="font-semibold">Muzammil Loya</span>
+                <br />
+                Software enginner
+              </Para>
+            )}
+          </header>
+          <section className="flex h-full flex-col gap-4">
+            <div className="inline-flex flex-col items-start justify-start gap-2 text-muted-foreground">
+              {NAV_LINKS.map((nav) => (
+                <Link
+                  href={nav.link}
+                  key={nav.title}
+                  className={cn(
+                    buttonVariants({
+                      variant: "ghost",
+                      size: isOpen ? "lg" : "icon",
+                    }),
+                    "flex w-full items-center justify-start gap-2.5 pl-4",
+                  )}
+                >
+                  <nav.icon className="h-5 w-5" />
+                  {isOpen && <Para>{nav.title}</Para>}
+                </Link>
+              ))}
+            </div>
+            <div className="inline-flex flex-col items-start justify-start gap-2 text-muted-foreground">
+              {isOpen && (
+                <Para bold className={cn("text-2xl text-primary")}>
+                  Socials
+                </Para>
+              )}
+              {SOCIAL_LINKS.map((social) => (
+                <a
+                  key={social.title}
+                  className={cn(
+                    buttonVariants({
+                      variant: "ghost",
+                      size: isOpen ? "default" : "icon",
+                    }),
+                    "flex w-full items-center justify-start gap-2.5 pl-4",
+                  )}
+                  href={social.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <social.icon className="h-5 w-5" />
+                  {isOpen && <Para>{social.title}</Para>}
+                </a>
+              ))}
+            </div>
+          </section>
+        </motion.div>
+        <motion.footer
+          className={cn("flex h-fit w-full items-center justify-center px-4", {
+            "mb-4 mt-auto": !isOpen,
+          })}
+        >
+          <Button size={isOpen ? "lg" : "icon"} className="w-full">
+            <BookOpenText className={cn("h-4 w-4", { "mr-2": isOpen })} />
+            {isOpen && "Read Resume"}
           </Button>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
+        </motion.footer>
+      </motion.nav>
+    </AnimatePresence>
   );
-}
+};
 export default Navbar;
