@@ -31,8 +31,6 @@ export default function ImageSection() {
           <Image
             src={`/images/${image}`}
             fill
-            layout="fill"
-            objectFit="cover"
             alt={image}
             className={cn("transition-all duration-300 hover:scale-110", {
               "scale-105": click === image,

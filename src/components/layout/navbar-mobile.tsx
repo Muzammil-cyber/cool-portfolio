@@ -1,6 +1,7 @@
 "use client";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetFooter,
@@ -18,7 +19,7 @@ import { NAV_LINKS, SOCIAL_LINKS } from "@/lib/constant";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-function NavbarMobile() {
+function NavbarMobile({ icon }: { icon: string }) {
   return (
     <Sheet>
       <SheetTrigger asChild className="h-fit p-0">
@@ -31,7 +32,7 @@ function NavbarMobile() {
             <SidebarOpen className="h-6 w-6" />
           </Button>
           <Image
-            src={"/Icon.svg"}
+            src={`/${icon}`}
             width={30}
             height={30}
             alt="Logo"
@@ -59,17 +60,18 @@ function NavbarMobile() {
         <SheetDescription className="flex h-full flex-col justify-evenly">
           <div className="inline-flex flex-col items-start justify-start gap-2 text-muted-foreground">
             {NAV_LINKS.map((nav) => (
-              <Link
-                href={nav.link}
-                key={nav.title}
-                className={cn(
-                  buttonVariants({ variant: "ghost", size: "xl" }),
-                  "flex w-full items-center justify-start gap-2.5 pl-4",
-                )}
-              >
-                <nav.icon className="h-5 w-5" />
-                <Para>{nav.title}</Para>
-              </Link>
+              <SheetClose asChild key={nav.title}>
+                <Link
+                  href={nav.link}
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "xl" }),
+                    "flex w-full items-center justify-start gap-2.5 pl-4",
+                  )}
+                >
+                  <nav.icon className="h-5 w-5" />
+                  <Para>{nav.title}</Para>
+                </Link>
+              </SheetClose>
             ))}
           </div>
           <div className="inline-flex flex-col items-start justify-start gap-2 text-muted-foreground">

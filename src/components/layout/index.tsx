@@ -5,11 +5,21 @@ import { ThemeProvider } from "next-themes";
 import { useWindowSize } from "@/lib/useHooks";
 import { MEDIUM_BREAKPOINT, SMALL_BREAKPOINT } from "@/lib/constant";
 import Navbar from "./navbar";
+import { usePathname } from "next/navigation";
 
 function Layout({ children }: PropsWithChildren) {
   const [isMounted, setIsMounted] = useState(false);
   const { width } = useWindowSize();
   const isMobile = width < SMALL_BREAKPOINT;
+  const pathname = usePathname();
+  const [icon, setIcon] = useState<string>("Icon.svg");
+  useEffect(() => {
+    if (pathname === "/") {
+      setIcon("Icon.svg");
+    } else {
+      setIcon(`icons${pathname}.svg`);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -25,7 +35,7 @@ function Layout({ children }: PropsWithChildren) {
   return (
     <ThemeProvider>
       {isMobile ? (
-        <NavbarMobile />
+        <NavbarMobile icon={icon} />
       ) : (
         <Navbar open={width > MEDIUM_BREAKPOINT} />
       )}
