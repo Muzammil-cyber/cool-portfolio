@@ -37,14 +37,13 @@ const Navbar = ({ open }: NavbarProps) => {
       <motion.nav
         layout
         //   initial={{ width: 80 }}
-        animate={{ width: isOpen ? 240 : 80 }}
+        animate={{ width: isOpen ? 340 : 80 }}
         //   exit={{ width: 80 }}
         transition={{
-          // type: "tween",
-          delay: 0.05,
+          type: isOpen ? "spring" : "tween",
         }}
         className={cn("flex h-full w-20 flex-col gap-4", {
-          "w-60": isOpen,
+          "w-[340px]": isOpen,
         })}
       >
         <motion.button

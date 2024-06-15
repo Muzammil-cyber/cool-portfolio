@@ -36,7 +36,7 @@ function Layout({ children }: PropsWithChildren) {
 export default Layout;
 
 const MainLayout = ({ children }: PropsWithChildren) => (
-  <main className="flex-grow rounded-b-md rounded-tl-md bg-background sm:rounded-md">
+  <main className="flex-grow overflow-y-auto rounded-b-md rounded-tl-md bg-background sm:rounded-md">
     {children}
   </main>
 );
