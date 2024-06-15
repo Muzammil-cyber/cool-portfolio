@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Encode_Sans_Condensed } from "next/font/google";
+import { Montserrat, Encode_Sans_Condensed } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/layout";
 import { cn } from "@/lib/utils";
 
-const fontSans = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const fontSans = Montserrat({ subsets: ["latin"], variable: "--font-sans" });
 const fontMono = Encode_Sans_Condensed({
   subsets: ["latin"],
   weight: ["400"],

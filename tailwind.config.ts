@@ -25,6 +25,7 @@ const config: Config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "meteor-effect": "meteor 5s linear infinite",
+        "wave-effect": "wave 2.5s ease-in-out infinite",
       },
       keyframes: {
         orbit: {
@@ -34,6 +35,16 @@ const config: Config = {
           "100%": {
             transform: "rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)",
           },
+        },
+        "wave": {
+          "0%": { transform: "rotate( 0.0deg)" },
+          "10%": { transform: "rotate(14.0deg)" },
+          "20%": { transform: "rotate(-8.0deg)" },
+          "30%": { transform: "rotate(10.0deg)" },
+          "40%": { transform: "rotate(-4.0deg)" },
+          "50%": { transform: "rotate(5.0deg)" },
+          "60%": { transform: "rotate( 2.0deg)" },
+          "100%": { transform: "rotate( 0.0deg)" },
         },
         meteor: {
           "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },

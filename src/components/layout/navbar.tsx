@@ -10,13 +10,28 @@ import {
   SidebarClose,
   SidebarOpen,
 } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useAnimate } from "framer-motion";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+type NavbarProps = {
+  open: boolean;
+};
+
+const Navbar = ({ open }: NavbarProps) => {
+  const [isOpen, setIsOpen] = useState(open);
+  const [scope, animate] = useAnimate();
+
+  // useEffect(() => {
+  //   if (!isOpen) {
+  //     animate("p", { opacity: 0 });
+  //   } else {
+  //     animate("p", { opacity: 1 });
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [isOpen]);
+
   return (
     <AnimatePresence>
       <motion.nav
@@ -24,6 +39,10 @@ const Navbar = () => {
         //   initial={{ width: 80 }}
         animate={{ width: isOpen ? 240 : 80 }}
         //   exit={{ width: 80 }}
+        transition={{
+          // type: "tween",
+          delay: 0.05,
+        }}
         className={cn("flex h-full w-20 flex-col gap-4", {
           "w-60": isOpen,
         })}
@@ -42,15 +61,13 @@ const Navbar = () => {
           )}
         </motion.button>
 
-        <motion.div
-          layout
-          className="flex h-fit w-full flex-col justify-between gap-4 px-4"
-        >
+        <div className="flex h-fit w-full flex-col justify-between gap-4 px-4">
           <header className="flex flex-row items-stretch gap-4 text-left">
             <Avatar className="h-12 w-12">
               <AvatarImage src="/images/profile-pic.svg" alt="@shadcn" />
               <AvatarFallback>ML</AvatarFallback>
             </Avatar>
+
             {isOpen && (
               <Para className={cn("text-left")}>
                 <span className="font-semibold">Muzammil Loya</span>
@@ -104,13 +121,17 @@ const Navbar = () => {
               ))}
             </div>
           </section>
-        </motion.div>
+        </div>
         <motion.footer
           className={cn("flex h-fit w-full items-center justify-center px-4", {
             "mb-4 mt-auto": !isOpen,
           })}
         >
-          <Button size={isOpen ? "lg" : "icon"} className="w-full">
+          <Button
+            size={isOpen ? "lg" : "icon"}
+            className="w-full"
+            title="Read Resume"
+          >
             <BookOpenText className={cn("h-4 w-4", { "mr-2": isOpen })} />
             {isOpen && "Read Resume"}
           </Button>
