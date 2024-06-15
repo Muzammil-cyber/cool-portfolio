@@ -1,22 +1,29 @@
 import { OrbitingCirclesDemo } from "@/components/IconOrbitDemo";
 import Wave from "@/components/animate-icons/wave";
-import FlipWords from "@/components/magicui/flip-words";
 import { Heading1, Heading2, Para } from "@/components/ui/Typography";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
 import Link from "next/link";
+
+const DynamicFlipWords = dynamic(
+  () => import("@/components/magicui/flip-words"),
+  {
+    loading: () => <span>Software Engineer</span>,
+  },
+);
 
 export default function Home() {
   return (
-    <main className="flex h-full w-full flex-col p-2 sm:flex-row">
-      <section className="h-1/2 sm:flex sm:h-full sm:w-1/2 sm:flex-col sm:justify-center">
+    <main className="container flex h-full w-full flex-col p-2 sm:flex-row">
+      <section className="h-1/2 sm:flex sm:h-full sm:w-1/2 sm:flex-col sm:justify-center sm:p-4">
         <Heading1>
           Hi! I&apos;m Muzammil Loya.
           <Wave />
         </Heading1>
         <Heading2>
-          <span className="max-md:hidden">I&apos;m a </span>
-          <FlipWords
+          <span className="hidden lg:block">I&apos;m a </span>
+          <DynamicFlipWords
             words={[
               "Software Engineer",
               "Web Developer",
@@ -41,7 +48,7 @@ export default function Home() {
           </Link>
         </div>
       </section>
-      <section className="h-1/2 sm:h-full sm:w-1/2">
+      <section className="grid h-1/2 place-items-center sm:h-full sm:w-1/2">
         <OrbitingCirclesDemo />
       </section>
     </main>

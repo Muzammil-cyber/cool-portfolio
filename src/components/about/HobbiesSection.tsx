@@ -31,7 +31,7 @@ export default function HobbiesSection() {
         When I&apos;m not crafting innovative software solutions, you&apos;ll
         find me exploring a world of diverse interests.
       </Para>
-      <div className="flex gap-2">
+      <div className="flex gap-2 max-sm:flex-col">
         {HOBBIES.map((hobbie) => (
           <div
             key={hobbie.title}

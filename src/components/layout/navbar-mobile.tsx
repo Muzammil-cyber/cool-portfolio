@@ -31,7 +31,7 @@ function NavbarMobile() {
             <SidebarOpen className="h-6 w-6" />
           </Button>
           <Image
-            src={"/icon.svg"}
+            src={"/Icon.svg"}
             width={30}
             height={30}
             alt="Logo"

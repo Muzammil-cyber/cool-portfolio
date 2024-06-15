@@ -122,9 +122,9 @@ const Navbar = ({ open }: NavbarProps) => {
           </section>
         </div>
         <motion.footer
-          className={cn("flex h-fit w-full items-center justify-center px-4", {
-            "mb-4 mt-auto": !isOpen,
-          })}
+          className={cn(
+            "mb-4 mt-auto flex h-fit w-full items-center justify-center px-4",
+          )}
         >
           <Button
             size={isOpen ? "lg" : "icon"}
