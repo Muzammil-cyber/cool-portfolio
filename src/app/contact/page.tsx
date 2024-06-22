@@ -42,7 +42,7 @@ export default function ContactPage() {
   }, [formError]);
 
   return (
-    <div className="container grid h-full place-items-center">
+    <div className="container grid h-full max-w-screen-md place-items-center">
       <div className="flex w-full flex-col gap-2">
         <Image
           src={"/icons/contact.svg"}
