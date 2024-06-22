@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function AboutPage() {
   return (
-    <main className="container flex flex-col gap-4 py-4">
+    <main className="container flex max-w-screen-md flex-col gap-4 py-4">
       <div className="flex w-full flex-col gap-2">
         <Image
           src={"/icons/about.svg"}

@@ -32,9 +32,12 @@ export default function ImageSection() {
             src={`/images/${image}`}
             fill
             alt={image}
-            className={cn("transition-all duration-300 hover:scale-110", {
-              "scale-105": click === image,
-            })}
+            className={cn(
+              "object-cover transition-all duration-300 hover:scale-110",
+              {
+                "scale-105": click === image,
+              },
+            )}
           />
         </div>
       ))}
