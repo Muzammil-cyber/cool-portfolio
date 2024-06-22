@@ -27,7 +27,7 @@ export default function Projects({
             {!isLast && (
               <Separator
                 key={card.title + "sepatator"}
-                className="mt-2 h-[2px]"
+                className="mt-2 h-[2px] max-w-3xl"
               />
             )}
           </div>

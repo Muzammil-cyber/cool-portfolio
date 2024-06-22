@@ -4,7 +4,7 @@ import { Heading3, Para } from "./ui/Typography";
 
 type CardProps = {
   title: string;
-  desc: string;
+  desc?: string;
   image?: string;
   link: string;
   tech: string[];
@@ -35,7 +35,7 @@ export default function Card({ title, desc, image, link, tech }: CardProps) {
       )}
       <div className="grid h-full gap-1">
         <Heading3>{title}</Heading3>
-        <Para muted>{desc}</Para>
+        {desc ? <Para muted>{desc}</Para> : null}
         <div className="mt-2 flex flex-wrap gap-2">
           {tech.map((tag) => (
             <span

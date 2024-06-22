@@ -14,9 +14,6 @@ export type ID = string | number;
 export interface PageInfoType {
     hasNextPage: boolean;
     hasPreviousPage: boolean;
-
-
-
 }
 
 export interface AggregateType {

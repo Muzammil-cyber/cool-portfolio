@@ -1,8 +1,11 @@
 import Card from "@/components/Card";
 import { Para, Heading1, Heading2 } from "@/components/ui/Typography";
 import { Separator } from "@/components/ui/separator";
+import { PageType } from "@/lib/types";
 
 import Image from "next/image";
+import { getPosts } from "../api";
+import Posts from "@/components/articles";
 
 export type CardType = {
   title: string;
@@ -28,7 +31,21 @@ const CARDS: CardType[] = [
     tech: ["css", "javascript"],
   },
 ];
-export default function ArticlesPage() {
+
+const getData = async (offset: number) => {
+  const { edges, pageInfo, aggregate } = await getPosts({
+    first: 5,
+    after: offset,
+  });
+  const posts = edges.map(({ node }) => node);
+  return { posts, pageInfo, aggregate };
+};
+
+export default async function ArticlesPage({ searchParams }: PageType) {
+  const { page = "0" } = searchParams;
+  const offset = parseInt(page as string) * 5;
+  const data = await getData(offset);
+
   return (
     <main className="container grid gap-4 py-4">
       <div className="flex w-full flex-col gap-2">
@@ -48,20 +65,7 @@ export default function ArticlesPage() {
         </Para>
       </div>
       <section className="grid gap-2">
-        {CARDS.map((card, idx) => {
-          const isLast: boolean = idx === CARDS.length - 1;
-          return (
-            <div key={card.title}>
-              <Card {...card} />
-              {!isLast && (
-                <Separator
-                  key={card.title + "sepatator"}
-                  className="mt-2 h-[2px]"
-                />
-              )}
-            </div>
-          );
-        })}
+        <Posts page={parseInt(page as string)} {...data} />
       </section>
     </main>
   );

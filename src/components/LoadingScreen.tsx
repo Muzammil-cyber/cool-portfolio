@@ -4,7 +4,7 @@ import { SparklesCore } from "./background/sparkles";
 
 export default function LoadingComponent() {
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-md bg-slate-950">
+    <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-md bg-slate-950 p-4">
       <div className="absolute inset-0 h-screen w-full">
         <SparklesCore
           id="tsparticlesfullpage"

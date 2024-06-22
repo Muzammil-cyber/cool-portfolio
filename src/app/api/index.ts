@@ -71,8 +71,8 @@ export async function getPosts(
           node {
             id
             title
-            createdAt
             topic
+            createdAt
             coverImage {
               id
               url
@@ -84,9 +84,10 @@ export async function getPosts(
         pageInfo {
           hasNextPage
           hasPreviousPage
-          startCursor
-          endCursor
-          pageSize
+          
+        }
+        aggregate {
+          count
         }
       }
     }
