@@ -1,7 +1,10 @@
-import Card from "@/components/Card";
 import { Heading1, Heading2, Para } from "@/components/ui/Typography";
-import { Separator } from "@/components/ui/separator";
+
 import Image from "next/image";
+import { getPorjects } from "../api";
+import { PageType } from "@/lib/types";
+import Projects from "@/components/projects";
+import Skills from "@/components/projects/skills";
 
 export type CardType = {
   title: string;
@@ -11,24 +14,37 @@ export type CardType = {
   tags: string[];
 };
 
-const CARDS: CardType[] = [
-  {
-    title: "Some Title",
-    description: "Lot of description here",
-    image: "/images/image-1.jpg",
-    link: "/projects",
-    tags: ["css", "javascript"],
-  },
-  {
-    title: "Some Title",
-    description: "Lot of description here",
-    image: "/images/image-1.jpg",
-    link: "/projects",
-    tags: ["css", "javascript"],
-  },
-];
+// const CARDS: CardType[] = [
+//   {
+//     title: "Some Title",
+//     description: "Lot of description here",
+//     image: "/images/image-1.jpg",
+//     link: "/projects",
+//     tags: ["css", "javascript"],
+//   },
+//   {
+//     title: "Some Title",
+//     description: "Lot of description here",
+//     image: "/images/image-1.jpg",
+//     link: "/projects",
+//     tags: ["css", "javascript"],
+//   },
+// ];
 
-export default function ProjectsPage() {
+const getData = async (offset: number) => {
+  const { edges, pageInfo, aggregate } = await getPorjects({
+    first: 5,
+    after: offset,
+  });
+  const projects = edges.map(({ node }) => node);
+  return { projects, pageInfo, aggregate };
+};
+
+export default async function ProjectsPage({ searchParams }: PageType) {
+  const { page = "0" } = searchParams;
+  const offset = parseInt(page as string) * 5;
+  const data = await getData(offset);
+
   return (
     <main className="container grid gap-4 py-4">
       <div className="flex w-full flex-col gap-2">
@@ -37,7 +53,7 @@ export default function ProjectsPage() {
           width={60}
           height={60}
           alt="Projects Icon"
-          className="hidden sm:block"
+          className="hidden h-auto sm:block"
         />
         <Heading1>Project Playground</Heading1>
         <Para muted>
@@ -50,22 +66,12 @@ export default function ProjectsPage() {
         <Heading2>Technologies</Heading2>
         <Para muted>All the technologies I have worked with ⚙️</Para>
         <div className="my-2 flex flex-wrap">
-          <div className="h-12 w-12 rounded-lg bg-orange-500"></div>
+          <Skills />
         </div>
       </section>
       <section className="grid gap-2">
         <Heading2>What I have been working on ⚡️</Heading2>
-        {CARDS.map((card, idx) => {
-          const isLast: boolean = idx === CARDS.length - 1;
-          return (
-            <>
-              <Card key={card.title} {...card} />
-              {!isLast && (
-                <Separator key={card.title + "sepatator"} className="h-[2px]" />
-              )}
-            </>
-          );
-        })}
+        <Projects page={parseInt(page as string)} {...data} />
       </section>
     </main>
   );

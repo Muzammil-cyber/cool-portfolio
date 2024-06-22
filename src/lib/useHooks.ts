@@ -15,12 +15,14 @@ export function useWindowSize(): {
     useLayoutEffect(() => {
         const handleResize = () => {
             setSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
+                width: document.querySelector('html')?.clientWidth ?? 0,
+                height: document.querySelector('html')?.clientHeight ?? 0,
+            })
         };
 
         handleResize();
+
+
         window.addEventListener("resize", handleResize);
 
         return () => {

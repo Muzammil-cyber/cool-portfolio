@@ -4,25 +4,27 @@ import { Heading3, Para } from "./ui/Typography";
 
 type CardProps = {
   title: string;
-  description: string;
+  desc: string;
   image?: string;
   link: string;
-  tags: string[];
+  tech: string[];
 };
 
-export default function Card({
-  title,
-  description,
-  image,
-  link,
-  tags,
-}: CardProps) {
+export default function Card({ title, desc, image, link, tech }: CardProps) {
   return (
     <Link
       href={link}
       className="flex w-full max-w-3xl flex-col gap-4 rounded-md p-2 hover:bg-input sm:flex-row sm:items-center"
     >
-      {image && (
+      {!image ? (
+        <Image
+          src={"/DefualtImage.jpg"}
+          alt={title}
+          width={128}
+          height={128}
+          className="aspect-video w-full rounded object-cover sm:aspect-square sm:h-32 sm:w-32"
+        />
+      ) : (
         <Image
           src={image}
           alt={title}
@@ -31,11 +33,11 @@ export default function Card({
           className="aspect-video w-full rounded object-cover sm:aspect-square sm:h-32 sm:w-32"
         />
       )}
-      <div className="flex h-full flex-col gap-1">
+      <div className="grid h-full gap-1">
         <Heading3>{title}</Heading3>
-        <Para muted>{description}</Para>
-        <div className="mt-auto flex gap-2">
-          {tags.map((tag) => (
+        <Para muted>{desc}</Para>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {tech.map((tag) => (
             <span
               key={tag}
               //   Color according to tech color

@@ -19,7 +19,7 @@ import { NAV_LINKS, SOCIAL_LINKS } from "@/lib/constant";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-function NavbarMobile({ icon }: { icon: string }) {
+function NavbarMobile({ path, icon }: { path: string; icon: string }) {
   return (
     <Sheet>
       <SheetTrigger asChild className="h-fit p-0">
@@ -36,7 +36,7 @@ function NavbarMobile({ icon }: { icon: string }) {
             width={30}
             height={30}
             alt="Logo"
-            className="mr-4"
+            className="mr-4 h-auto"
           />
         </div>
       </SheetTrigger>
@@ -66,6 +66,7 @@ function NavbarMobile({ icon }: { icon: string }) {
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "xl" }),
                     "flex w-full items-center justify-start gap-2.5 pl-4",
+                    { "text-accent-foreground": nav.link === path },
                   )}
                 >
                   <nav.icon className="h-5 w-5" />

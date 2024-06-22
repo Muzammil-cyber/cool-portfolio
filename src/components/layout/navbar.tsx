@@ -4,24 +4,19 @@ import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Para } from "../ui/Typography";
 import { Button, buttonVariants } from "../ui/button";
 import { cn } from "@/lib/utils";
-import {
-  BookOpenText,
-  Download,
-  SidebarClose,
-  SidebarOpen,
-} from "lucide-react";
-import { AnimatePresence, motion, useAnimate } from "framer-motion";
+import { BookOpenText, SidebarClose, SidebarOpen } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type NavbarProps = {
   open: boolean;
+  path: string;
 };
 
-const Navbar = ({ open }: NavbarProps) => {
+const Navbar = ({ path, open }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(open);
-  const [scope, animate] = useAnimate();
 
   // useEffect(() => {
   //   if (!isOpen) {
@@ -87,6 +82,7 @@ const Navbar = ({ open }: NavbarProps) => {
                       size: isOpen ? "lg" : "icon",
                     }),
                     "flex w-full items-center justify-start gap-2.5 pl-4",
+                    { "text-accent-foreground": path === nav.link },
                   )}
                 >
                   <nav.icon className="h-5 w-5" />

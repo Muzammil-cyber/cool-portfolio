@@ -15,7 +15,7 @@ export default function AboutPage() {
           width={40}
           height={40}
           alt="About me Icon"
-          className="hidden sm:block"
+          className="hidden h-auto sm:block"
         />
         <Heading1>About Me</Heading1>
         <Para muted>

@@ -35,9 +35,9 @@ function Layout({ children }: PropsWithChildren) {
   return (
     <ThemeProvider>
       {isMobile ? (
-        <NavbarMobile icon={icon} />
+        <NavbarMobile path={pathname} icon={icon} />
       ) : (
-        <Navbar open={width > MEDIUM_BREAKPOINT} />
+        <Navbar path={pathname} open={width > MEDIUM_BREAKPOINT} />
       )}
       <MainLayout>{children}</MainLayout>
     </ThemeProvider>

@@ -6,26 +6,26 @@ import Image from "next/image";
 
 export type CardType = {
   title: string;
-  description: string;
+  desc: string;
   image?: string;
   link: string;
-  tags: string[];
+  tech: string[];
 };
 
 const CARDS: CardType[] = [
   {
     title: "Some Title",
-    description: "Lot of description here",
+    desc: "Lot of desc here",
     image: "/images/image-1.jpg",
     link: "/projects",
-    tags: ["css", "javascript"],
+    tech: ["css", "javascript"],
   },
   {
     title: "Some Title",
-    description: "Lot of description here",
+    desc: "Lot of description here",
     image: "/images/image-1.jpg",
     link: "/projects",
-    tags: ["css", "javascript"],
+    tech: ["css", "javascript"],
   },
 ];
 export default function ArticlesPage() {
@@ -37,7 +37,7 @@ export default function ArticlesPage() {
           width={40}
           height={40}
           alt="Articles Icon"
-          className="hidden sm:block"
+          className="hidden h-auto sm:block"
         />
         <Heading1>The Knowledge Hub</Heading1>
         <Para muted>
@@ -51,12 +51,15 @@ export default function ArticlesPage() {
         {CARDS.map((card, idx) => {
           const isLast: boolean = idx === CARDS.length - 1;
           return (
-            <>
-              <Card key={card.title} {...card} />
+            <div key={card.title}>
+              <Card {...card} />
               {!isLast && (
-                <Separator key={card.title + "sepatator"} className="h-[2px]" />
+                <Separator
+                  key={card.title + "sepatator"}
+                  className="mt-2 h-[2px]"
+                />
               )}
-            </>
+            </div>
           );
         })}
       </section>
