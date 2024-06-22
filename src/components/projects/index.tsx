@@ -23,7 +23,13 @@ export default function Projects({
         const isLast: boolean = idx === projects.length - 1;
         return (
           <div key={card.title}>
-            <Card link={`/projects/${card.id}`} {...card} />
+            <Card
+              link={`/projects/${card.id}`}
+              title={card.title}
+              desc={card.desc}
+              tech={card.tech}
+              image={card.image?.url}
+            />
             {!isLast && (
               <Separator
                 key={card.title + "sepatator"}

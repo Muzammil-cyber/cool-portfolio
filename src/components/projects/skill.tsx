@@ -32,7 +32,7 @@ export default function Skill({ title, Icon, theme }: Omit<SkillType, "id">) {
       onMouseOver={() => setHover(true)}
       onMouseOut={() => setHover(false)}
     >
-      <span className="absolute -left-4 -top-2 rounded-lg bg-secondary px-1 py-1 text-xs text-white opacity-0">
+      <span className="absolute -left-4 -top-2 rounded bg-secondary px-1 py-1 text-xs text-secondary-foreground opacity-0 shadow shadow-black/90">
         {title}
       </span>
       <Icon className={`fill-white ${size ? size : "text-xl"}`} />

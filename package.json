@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@graphcms/rich-text-react-renderer": "^0.6.1",
     "@graphcms/rich-text-types": "^0.5.1",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",

@@ -17,7 +17,8 @@ function Layout({ children }: PropsWithChildren) {
     if (pathname === "/") {
       setIcon("Icon.svg");
     } else {
-      setIcon(`icons${pathname}.svg`);
+      const split = pathname.split("/");
+      setIcon(`icons/${split[1]}.svg`);
     }
   }, [pathname]);
 

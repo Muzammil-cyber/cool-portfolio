@@ -46,7 +46,7 @@ export default async function ProjectsPage({ searchParams }: PageType) {
   const data = await getData(offset);
 
   return (
-    <main className="container grid gap-4 py-4">
+    <main className="container grid w-fit gap-4 py-4">
       <div className="flex w-full flex-col gap-2">
         <Image
           src={"/icons/projects.svg"}

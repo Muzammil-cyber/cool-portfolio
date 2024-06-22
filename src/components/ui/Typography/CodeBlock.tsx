@@ -8,7 +8,7 @@ export function CodeBlock(props: PreProps) {
       {...rest}
       role={role ? role : "code"}
       className={cn([
-        "rounded bg-muted py-2 pl-12 pr-8  font-mono  w-fit overflow-x-auto leading-6",
+        "w-full max-w-screen-sm overflow-x-auto rounded bg-muted px-8 py-2 font-mono leading-6",
         className,
       ])}
     >

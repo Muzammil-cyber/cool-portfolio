@@ -7,6 +7,7 @@ import {
 
   PostWithDescriptionType,
   ProjectConnectionType,
+  ProjectWithDescriptionType,
 } from "@/lib/types";
 import { hygraph } from "./header";
 
@@ -51,6 +52,29 @@ export async function getPorjects(
     await hygraph.request(QUERY, cursor);
 
   return projectsConnection;
+}
+
+export async function getProjectById(id: ID): Promise<ProjectWithDescriptionType> {
+  noStore();
+  const QUERY = gql`
+    query getProjectById($id: ID!) {
+      project(where: { id: $id }) {
+        id
+        description {
+        raw
+        }
+        tech
+        title
+        createdAt
+        webUrl
+        gitUrl
+      }
+    }
+  `;
+  const { project }: { project: ProjectWithDescriptionType } = await hygraph.request(QUERY, {
+    id,
+  });
+  return project;
 }
 
 

@@ -14,29 +14,33 @@ export default function Card({ title, desc, image, link, tech }: CardProps) {
   return (
     <Link
       href={link}
-      className="flex w-full max-w-3xl flex-col gap-4 rounded-md p-2 hover:bg-input sm:flex-row sm:items-center"
+      className="flex w-full flex-col gap-4 rounded-md p-2 hover:bg-input sm:h-36 sm:max-w-screen-md sm:flex-row sm:items-center"
     >
       {!image ? (
         <Image
           src={"/DefualtImage.jpg"}
           alt={title}
-          width={128}
-          height={128}
+          width={200}
+          height={200}
           className="aspect-video w-full rounded object-cover sm:aspect-square sm:h-32 sm:w-32"
         />
       ) : (
         <Image
           src={image}
           alt={title}
-          width={128}
-          height={128}
+          width={200}
+          height={200}
           className="aspect-video w-full rounded object-cover sm:aspect-square sm:h-32 sm:w-32"
         />
       )}
-      <div className="grid h-full gap-1">
+      <div className="flex h-full flex-col">
         <Heading3>{title}</Heading3>
-        {desc ? <Para muted>{desc}</Para> : null}
-        <div className="mt-2 flex flex-wrap gap-2">
+        {desc ? (
+          <Para muted className="overflow-hidden text-ellipsis">
+            {desc}
+          </Para>
+        ) : null}
+        <div className="mt-2 sm:mt-auto flex flex-wrap gap-2">
           {tech.map((tag) => (
             <span
               key={tag}

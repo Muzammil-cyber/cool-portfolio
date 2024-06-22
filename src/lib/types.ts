@@ -44,13 +44,13 @@ export interface PostWithDescriptionType {
         height: number;
     };
     desc: {
-        raw?: PostDescriptionType;
+        raw: DescriptionType;
         text?: string;
     };
 
 }
 
-export type PostDescriptionType = RichTextContent
+export type DescriptionType = RichTextContent
 export interface PostEdgeType {
     cursor: string;
     node: PostType;
@@ -66,6 +66,7 @@ export interface SkillType {
     title: string;
     Icon: ReactIconType;
     theme: string;
+    color: string;
 }
 export interface ExpType {
     id: ID;
@@ -86,7 +87,20 @@ export interface ProjectType {
     title: string;
     desc: string;
     tech: string[];
-    image?: string
+    image?: ImageType
+}
+
+export interface ProjectWithDescriptionType {
+    id: ID;
+    title: string;
+    description: {
+        raw: DescriptionType
+    };
+    tech: string[];
+    image?: ImageType
+    webUrl?: string;
+    gitUrl: string;
+    createdAt: string;
 }
 export interface ProjectEdgeType {
     node: ProjectType;
@@ -97,17 +111,14 @@ export interface ProjectConnectionType {
     aggregate: AggregateType
 }
 export interface ImageType {
-    img: {
-        src: string;
-        height: number;
-        width: number;
-    };
-    base64: string;
+    url: string;
+    height: number;
+    width: number;
 }
 
 export interface PageType {
     searchParams: { [key: string]: string | string[] | undefined };
-    params?: { slug: string }
+    params: { id: string }
 }
 
 // // export type { PostType, SkillType, ExpType, FactType, ProjectType, ImageType, ProjectEdgeType, PageInfoType, ProjectConnectionType }
