@@ -4,6 +4,8 @@ import "./globals.css";
 import Layout from "@/components/layout";
 import { cn } from "@/lib/utils";
 
+import { Toaster } from "@/components/ui/toaster";
+
 const fontSans = Montserrat({ subsets: ["latin"], variable: "--font-sans" });
 const fontMono = Encode_Sans_Condensed({
   subsets: ["latin"],
@@ -32,6 +34,7 @@ export default function RootLayout({
         )}
       >
         <Layout>{children}</Layout>
+        <Toaster />
       </body>
     </html>
   );

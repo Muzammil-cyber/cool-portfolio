@@ -10,6 +10,8 @@ import {
   ProjectWithDescriptionType,
 } from "@/lib/types";
 import { hygraph } from "./header";
+import { ErrorResponse, Resend } from "resend";
+import { error } from "console";
 
 
 export async function getPorjects(
@@ -189,5 +191,26 @@ export const getPostsMeta = async (): Promise<PostWithDescriptionType[]> => {
     await hygraph.request(QUERY);
   return posts;
 };
+export async function handleSubmitContact({ name, email, message }: {
+  name: string;
+  email: string;
+  message: string;
 
+}): Promise<ErrorResponse | undefined> {
+
+  try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const { data, error } = await resend.emails.send({
+      to: "muzammilloya0@gmail.com",
+      subject: "New Contact Form Submission",
+      from: "From Portfolio <onboarding@resend.dev>",
+      text: `Name: ${name}\nFrom: ${email}\nMessage: ${message}`,
+    });
+    if (error) {
+      return error
+    }
+  } catch (e) {
+    return e as ErrorResponse
+  }
+}
 // This code exports two functions, `getPosts` and `getProjects`, which fetch data from a GraphQL API and return it as arrays of custom data types `PostType` and `ProjectType` respectively. The `noStore` function is used to disable caching for this page because the data is expected to change frequently.
