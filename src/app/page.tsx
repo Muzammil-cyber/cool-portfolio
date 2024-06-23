@@ -22,7 +22,7 @@ export default function Home() {
           <Wave />
         </Heading1>
         <Heading2>
-          <span className="hidden lg:block">I&apos;m a </span>
+          <span className="max-md:hidden">I&apos;m a </span>
           <DynamicFlipWords
             words={[
               "Software Engineer",
