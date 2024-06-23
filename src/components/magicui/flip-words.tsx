@@ -68,7 +68,7 @@ const FlipWords = ({
         {currentWord.split("").map((letter, index) => (
           <>
             <motion.span
-              key={currentWord + index}
+              key={currentWord + index + letter}
               initial={{
                 opacity: 0,
                 y: 10,

@@ -1,8 +1,8 @@
 "use client";
 import { NAV_LINKS, SOCIAL_LINKS } from "@/lib/constant";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Para } from "../ui/Typography";
-import { Button, buttonVariants } from "../ui/button";
+import { Para } from "../../ui/Typography";
+import { Button, buttonVariants } from "../../ui/button";
 import { cn } from "@/lib/utils";
 import { BookOpenText, SidebarClose, SidebarOpen } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -126,9 +126,17 @@ const Navbar = ({ path, open }: NavbarProps) => {
             size={isOpen ? "lg" : "icon"}
             className="w-full"
             title="Read Resume"
+            asChild
           >
-            <BookOpenText className={cn("h-4 w-4", { "mr-2": isOpen })} />
-            {isOpen && "Read Resume"}
+            <Link
+              rel="nocrawal, nofollow"
+              href={"/MuzammilLoya.pdf"}
+              target="_blank"
+              type="application/pdf"
+            >
+              <BookOpenText className={cn("h-4 w-4", { "mr-2": isOpen })} />
+              {isOpen && "Read Resume"}
+            </Link>
           </Button>
         </motion.footer>
       </motion.nav>

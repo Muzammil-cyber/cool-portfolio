@@ -1,4 +1,5 @@
-import { useLayoutEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { DependencyList, EffectCallback, useEffect, useLayoutEffect, useRef, useState, Dispatch, SetStateAction, useSyncExternalStore, useCallback, } from "react";
 
 export function useWindowSize(): {
     width: number;
@@ -7,16 +8,16 @@ export function useWindowSize(): {
     const [size, setSize] = useState<{
         width: number;
         height: number;
-    }>({
-        width: 0,
-        height: 0
+    }>({} as {
+        width: number;
+        height: number;
     });
 
     useLayoutEffect(() => {
         const handleResize = () => {
             setSize({
-                width: document.querySelector('html')?.clientWidth ?? 0,
-                height: document.querySelector('html')?.clientHeight ?? 0,
+                width: window.innerWidth,
+                height: window.innerHeight,
             })
         };
 
@@ -47,4 +48,20 @@ export function useDebounce(value: any, delay: number) {
     }, [value, delay]);
 
     return debouncedValue;
+}
+
+export function useSyncLocalStorage<T>(key: string, value: T) {
+    const [state, setState] = useState<T>(() => {
+        const storedValue = localStorage.getItem(key);
+        if (storedValue) {
+            return JSON.parse(storedValue);
+        }
+        return value;
+    });
+
+    useEffect(() => {
+        localStorage.setItem(key, JSON.stringify(state));
+    }, [state, key]);
+
+    return [state, setState] as const;
 }

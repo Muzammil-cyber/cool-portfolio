@@ -9,17 +9,29 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button, buttonVariants } from "../ui/button";
+import { Button, buttonVariants } from "../../ui/button";
 import { Download, SidebarOpen } from "lucide-react";
 import Image from "next/image";
-import { Avatar, AvatarImage } from "../ui/avatar";
-import { Heading4, Para } from "../ui/Typography";
+import { Avatar, AvatarImage } from "../../ui/avatar";
+import { Heading4, Para } from "../../ui/Typography";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { NAV_LINKS, SOCIAL_LINKS } from "@/lib/constant";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
-function NavbarMobile({ path, icon }: { path: string; icon: string }) {
+function NavbarMobile() {
+  const pathname = usePathname();
+  const [icon, setIcon] = useState<string>("Icon.svg");
+  useEffect(() => {
+    if (pathname === "/") {
+      setIcon("Icon.svg");
+    } else {
+      const split = pathname.split("/");
+      setIcon(`icons/${split[1]}.svg`);
+    }
+  }, [pathname]);
   return (
     <Sheet>
       <SheetTrigger asChild className="h-fit p-0">
@@ -66,7 +78,7 @@ function NavbarMobile({ path, icon }: { path: string; icon: string }) {
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "xl" }),
                     "flex w-full items-center justify-start gap-2.5 pl-4",
-                    { "text-accent-foreground": nav.link === path },
+                    { "text-accent-foreground": nav.link === pathname },
                   )}
                 >
                   <nav.icon className="h-5 w-5" />
@@ -97,9 +109,17 @@ function NavbarMobile({ path, icon }: { path: string; icon: string }) {
           </div>
         </SheetDescription>
         <SheetFooter id="foot">
-          <Button size={"xl"}>
-            <Download className="mr-2 h-4 w-4" />
-            Download Resume
+          <Button size={"xl"} asChild>
+            <a
+              rel="nocrawal, nofollow"
+              href={"/MuzammilLoya.pdf"}
+              target="_blank"
+              type="application/pdf"
+              download
+            >
+              <Download className="mr-2 h-4 w-4" />
+              Download Resume
+            </a>
           </Button>
         </SheetFooter>
       </SheetContent>
