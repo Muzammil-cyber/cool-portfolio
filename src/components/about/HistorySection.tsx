@@ -38,9 +38,9 @@ export default function HistorySection() {
             <div className="grid place-items-center gap-2 px-1 py-2">
               <div className="rounded-full bg-muted p-2">
                 {work.duration.includes("Present") ? (
-                  <CalendarCheck className="h-5 w-5 text-muted-foreground" />
-                ) : (
                   <Calendar className="h-5 w-5 text-muted-foreground" />
+                ) : (
+                  <CalendarCheck className="h-5 w-5 text-muted-foreground" />
                 )}
               </div>
               <Separator className="h-14" orientation="vertical" />
