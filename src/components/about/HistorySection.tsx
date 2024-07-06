@@ -11,7 +11,7 @@ const WORK_HISTORY: {
   {
     company: "Digital Graphiks",
     position: "Web Developer",
-    duration: "08/2022 - Present",
+    duration: "06/2024 - Present",
     details:
       "Developed and maintained visually stunning websites for clients with special needs.",
   },
