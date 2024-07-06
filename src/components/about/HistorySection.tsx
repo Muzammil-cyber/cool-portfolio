@@ -9,6 +9,13 @@ const WORK_HISTORY: {
   details: string;
 }[] = [
   {
+    company: "Digital Graphiks",
+    position: "Web Developer",
+    duration: "08/2022 - Present",
+    details:
+      "Developed and maintained visually stunning websites for clients with special needs.",
+  },
+  {
     company: "Google Student Developer Club",
     position: "Executive Director of Web Development",
     duration: "02/2023 - Present",
