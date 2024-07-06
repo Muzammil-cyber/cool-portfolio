@@ -6,6 +6,57 @@ import { PageType } from "@/lib/types";
 import Image from "next/image";
 import { getPosts } from "../api";
 import Posts from "@/components/articles";
+import { Metadata } from "next";
+import { BASE_URL } from "@/lib/constant";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { edges } = await getPosts();
+  const uniqueTopics = edges
+    .map(({ node }) => node.topic)
+    .filter((value, index, self) => self.indexOf(value) === index);
+
+  const description =
+    "Explore diverse topics, expand your mind. 🧠 with " +
+    uniqueTopics.join(", ") +
+    " and more.";
+
+  return {
+    title: "The Knowledge Hub: Dive Deep into Technology",
+    category: "article",
+    keywords: uniqueTopics,
+    description,
+
+    openGraph: {
+      title: "The Knowledge Hub: Dive Deep into Technology",
+      description,
+      url: BASE_URL + "/articles",
+      type: "profile",
+      locale: "en_US",
+      // @ts-expect-error
+      images: edges.map(
+        (edge) =>
+          edge.node.coverImage && {
+            url: edge.node.coverImage.url,
+            width: edge.node.coverImage?.width,
+            height: edge.node.coverImage?.height,
+            alt: edge.node.title,
+          },
+      ),
+      firstName: "Muzammil",
+      lastName: "Loya",
+      username: "Muzammil-cyber",
+      gender: "male",
+    },
+    twitter: {
+      card: "summary_large_image",
+      creator: "@MuzammilLoya",
+      title: "The Knowledge Hub: Dive Deep into Technology",
+      description,
+      // @ts-expect-error
+      images: edges.map(({ node }) => node.coverImage && node.coverImage.url),
+    },
+  };
+}
 
 export type CardType = {
   title: string;
