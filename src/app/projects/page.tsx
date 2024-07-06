@@ -5,6 +5,57 @@ import { getPorjects } from "../api";
 import { PageType } from "@/lib/types";
 import Projects from "@/components/projects";
 import Skills from "@/components/projects/skills";
+import { BASE_URL } from "@/lib/constant";
+import { Metadata } from "next";
+
+// Muzammil - Projects | Software Engineer, Web Developer
+
+export const metadata: Metadata = {
+  title: "Muzammil - Projects | Software Engineer, Web Developer",
+  description:
+    "Check out my software engineering portfolio showcasing projects like an NFT marketplace built with Next.js and MongoDB, a dog dating app, and more! I use technologies like HTML, CSS, JavaScript, VBscript, React native, and Node.js.",
+  keywords: [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React.js",
+    "Express.js",
+    "Next.js",
+    "Tailwind CSS",
+    "Web3",
+    "Motoko",
+    "VBscript",
+  ],
+  openGraph: {
+    title: "Muzammil - Projects | Software Engineer, Web Developer",
+    description:
+      "Check out my software engineering portfolio showcasing projects like an NFT marketplace built with Next.js and MongoDB, a dog dating app, and more! I use technologies like HTML, CSS, JavaScript, VBscript, React native, and Node.js.",
+    url: BASE_URL + "/projects",
+    type: "profile",
+    siteName: "Muzammil Loya's Portfolio",
+    locale: "en_US",
+    images: [
+      {
+        url: BASE_URL + "meta-image.jpg",
+        width: 800,
+        height: 600,
+        alt: "Muzammil Loya's Portfolio",
+      },
+    ],
+    firstName: "Muzammil",
+    lastName: "Loya",
+    username: "Muzammil-cyber",
+    gender: "male",
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@MuzammilLoya",
+    title: "Muzammil - Projects | Software Engineer, Web Developer",
+    description:
+      "Check out my software engineering portfolio showcasing projects like an NFT marketplace built with Next.js and MongoDB, a dog dating app, and more! I use technologies like HTML, CSS, JavaScript, VBscript, React native, and Node.js.",
+    images: [BASE_URL + "meta-image.jpg"],
+  },
+};
 
 export type CardType = {
   title: string;
@@ -13,23 +64,6 @@ export type CardType = {
   link: string;
   tags: string[];
 };
-
-// const CARDS: CardType[] = [
-//   {
-//     title: "Some Title",
-//     description: "Lot of description here",
-//     image: "/images/image-1.jpg",
-//     link: "/projects",
-//     tags: ["css", "javascript"],
-//   },
-//   {
-//     title: "Some Title",
-//     description: "Lot of description here",
-//     image: "/images/image-1.jpg",
-//     link: "/projects",
-//     tags: ["css", "javascript"],
-//   },
-// ];
 
 const getData = async (offset: number) => {
   const { edges, pageInfo, aggregate } = await getPorjects({

@@ -370,3 +370,5 @@ export const SOCIAL_LINKS: { link: string; title: string; icon: IconType }[] = [
 
 export const SMALL_BREAKPOINT: number = 640; // 640px
 export const MEDIUM_BREAKPOINT: number = 768; // 768px
+
+export const BASE_URL = "https://muzammil-cool.vercel.app/";
