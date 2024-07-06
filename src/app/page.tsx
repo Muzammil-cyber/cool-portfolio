@@ -38,7 +38,16 @@ export default function Home() {
           &apos;26.
         </Para>
         <div className="flex gap-4 py-4">
-          <Button size={"lg"}>Read Resume</Button>
+          <Button size={"lg"} asChild>
+            <Link
+              rel="nocrawal, nofollow"
+              href={"/MuzammilLoya.pdf"}
+              target="_blank"
+              type="application/pdf"
+            >
+              View Resume
+            </Link>
+          </Button>
 
           <Link
             href={"/about"}
