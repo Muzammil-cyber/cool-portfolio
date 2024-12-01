@@ -9,16 +9,23 @@ const WORK_HISTORY: {
   details: string;
 }[] = [
   {
+    company: "Google Developer Group",
+    position: "Technical Lead",
+    duration: "09/2024 - Present",
+    details:
+      "Organised seminars to disseminate knowledge about advancements in the technical world.",
+  },
+  {
     company: "Digital Graphiks",
     position: "Web Developer",
-    duration: "06/2024 - Present",
+    duration: "06/2024 - 09/2024",
     details:
       "Developed and maintained visually stunning websites for clients with special needs.",
   },
   {
     company: "Google Student Developer Club",
     position: "Executive Director of Web Development",
-    duration: "02/2023 - Present",
+    duration: "02/2023 - 09/2024",
     details:
       "Organised seminars to disseminate knowledge about web development.",
   },

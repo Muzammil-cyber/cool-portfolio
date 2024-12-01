@@ -11,7 +11,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Muzammil - About | Software Engineer, Web Developer, Blogger",
   description:
-    "Hi, I'm Muzammil, a 20-year-old software Enginner skilled in HTML, CSS, JavaScript, React, Node.js, and more. Let's connect!",
+    "Hi, I'm Muzammil, a 20-year-old software Engineer skilled in HTML, CSS, JavaScript, React, Node.js, and more. Let's connect!",
   keywords: [
     "HTML",
     "CSS",

@@ -1,3 +1,4 @@
+import { age } from "@/lib/constant";
 import { Heading2, Para } from "../ui/Typography";
 
 export default function IntroSection() {
@@ -5,9 +6,9 @@ export default function IntroSection() {
     <section className="grid gap-2">
       <Heading2>My Software Journey 💻</Heading2>
       <Para>
-        At 20, I&apos;m a passionate <strong>software engineer</strong> with
-        expertise in <strong>React Native, ReactJS, and Node.js</strong>. Since
-        starting my development journey at 19, I&apos;ve gained valuable
+        At {age()}, I&apos;m a passionate <strong>software engineer</strong>{" "}
+        with expertise in <strong>React Native, NextJS, and Node.js</strong>.
+        Since starting my development journey at 19, I&apos;ve gained valuable
         experience crafting robust and scalable solutions that elevate user
         experience across diverse companies globally. 🌍
       </Para>

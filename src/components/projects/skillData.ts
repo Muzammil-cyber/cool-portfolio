@@ -1,6 +1,6 @@
 import { FaCss3, FaDocker, FaGitAlt, FaHtml5, FaNode, FaReact, FaStripe } from "react-icons/fa";
 import { TbBrandNextjs, TbBrandReactNative } from "react-icons/tb";
-import { SiTypescript, SiJavascript, SiMongodb, SiTailwindcss, SiChakraui, SiPostgresql, SiFramer, SiFirebase, SiPayloadcms } from "react-icons/si";
+import { SiTypescript, SiJavascript, SiMongodb, SiTailwindcss, SiChakraui, SiPostgresql, SiFramer, SiFirebase, SiPayloadcms, SiSvelte, SiGreensock } from "react-icons/si";
 import { SkillType } from "@/lib/types";
 
 export const SkillSet: SkillType[] = [
@@ -48,7 +48,15 @@ export const SkillSet: SkillType[] = [
         title: 'Nextjs',
         Icon: TbBrandNextjs,
         theme: "bg-black !text-3xl",
-        color: "text-black"
+        color: "text-black dark:text-white"
+
+    },
+    {
+        id: 21,
+        title: 'Svelte',
+        Icon: SiSvelte,
+        theme: "bg-orange-500",
+        color: "text-orange-500"
 
     },
     {
@@ -93,11 +101,18 @@ export const SkillSet: SkillType[] = [
     },
     {
         id: 20,
-        title: 'Framer-motion',
+        title: 'Motion',
         Icon: SiFramer,
         theme: "bg-blue-800",
-        color: 'bg-blue-800'
+        color: 'text-yellow-400'
 
+    },
+    {
+        id: 22,
+        title: 'GSAP',
+        Icon: SiGreensock,
+        theme: "bg-green-500 !text-3xl",
+        color: "text-green-500"
     },
     {
         id: 10,
