@@ -34,7 +34,7 @@ export default function Home() {
           />
         </Heading2>
         <Para>
-          Skilled Software Engineer & Web Dev Leader @ GDSC. Freelancer | IoBM
+          Skilled Software Engineer & Web Dev Leader @ GDG. Freelancer | IoBM
           &apos;26.
         </Para>
         <div className="flex gap-4 py-4">
