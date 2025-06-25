@@ -11,7 +11,7 @@ const getData = async (id: string) => {
 };
 
 export default async function ProjectPage({ params }: PageType) {
-  const { id } = params;
+  const { id } = await params;
   const post = await getData(id.toLowerCase());
   const date = new Date(post.createdAt);
   return (

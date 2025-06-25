@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -66,7 +66,7 @@ const FlipWords = ({
         key={currentWord + words.indexOf(currentWord)}
       >
         {currentWord.split("").map((letter, index) => (
-          <>
+          <Fragment key={currentWord + index + letter}>
             <motion.span
               key={currentWord + index + letter}
               initial={{
@@ -88,7 +88,7 @@ const FlipWords = ({
               {letter === " " ? "\u00A0" : letter}
             </motion.span>
             {letter === " " && <wbr />}
-          </>
+          </Fragment>
         ))}
       </motion.div>
     </AnimatePresence>

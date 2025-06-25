@@ -75,7 +75,7 @@ const getData = async (offset: number) => {
 };
 
 export default async function ProjectsPage({ searchParams }: PageType) {
-  const { page = "0" } = searchParams;
+  const { page = "0" } = await searchParams;
   const offset = parseInt(page as string) * 5;
   const data = await getData(offset);
 
