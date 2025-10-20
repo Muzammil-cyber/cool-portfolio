@@ -67,8 +67,5 @@
   color: var(--primary);
   text-underline-offset: 4px;
   font-weight: 500;
-}
-
-@utility link:hover {
-  text-decoration-line: underline;
+  @apply hover:underline;
 }
